@@ -1,0 +1,136 @@
+[
+  {
+    "id": "Q01",
+    "question": "Chính sách hoàn trả hàng ra sao?",
+    "expected_route": ["policy"],
+    "expected_status": "ok",
+    "expected_contains": ["15 ngày", "trả hàng"]
+  },
+  {
+    "id": "Q02",
+    "question": "Giao hàng tiêu chuẩn thường mất bao lâu?",
+    "expected_route": ["policy"],
+    "expected_status": "ok"
+  },
+  {
+    "id": "Q03",
+    "question": "Khách có được kiểm hàng khi nhận không?",
+    "expected_route": ["policy"],
+    "expected_status": "ok"
+  },
+  {
+    "id": "Q04",
+    "question": "Voucher có được hoàn lại khi hủy đơn không?",
+    "expected_route": ["policy"],
+    "expected_status": "ok"
+  },
+  {
+    "id": "Q05",
+    "question": "Các trường hợp nào thường không hỗ trợ trả hàng?",
+    "expected_route": ["policy"],
+    "expected_status": "ok"
+  },
+  {
+    "id": "Q06",
+    "question": "Đơn hàng 1971 bao giờ được giao?",
+    "expected_route": ["data"],
+    "expected_status": "ok"
+  },
+  {
+    "id": "Q07",
+    "question": "Cho tôi xem danh sách đơn hàng của khách hàng C001",
+    "expected_route": ["data"],
+    "expected_status": "ok"
+  },
+  {
+    "id": "Q08",
+    "question": "Voucher của khách hàng C001 còn những mã nào dùng được?",
+    "expected_route": ["data"],
+    "expected_status": "ok"
+  },
+  {
+    "id": "Q09",
+    "question": "Khách hàng C001 thuộc hạng gì và còn quota voucher bao nhiêu?",
+    "expected_route": ["data"],
+    "expected_status": "ok"
+  },
+  {
+    "id": "Q10",
+    "question": "Đơn hàng 2058 đang ở trạng thái nào?",
+    "expected_route": ["data"],
+    "expected_status": "ok"
+  },
+  {
+    "id": "Q11",
+    "question": "Đơn hàng 1971 có được hoàn trả không?",
+    "expected_route": ["data", "policy"],
+    "expected_status": "ok",
+    "expected_contains": ["1971", "chưa thể"]
+  },
+  {
+    "id": "Q12",
+    "question": "Đơn hàng 2058 còn trong thời gian trả hàng không?",
+    "expected_route": ["data", "policy"],
+    "expected_status": "ok"
+  },
+  {
+    "id": "Q13",
+    "question": "Đơn hàng 2058 nếu khách đổi ý thì có thể trả trong bao lâu?",
+    "expected_route": ["data", "policy"],
+    "expected_status": "ok"
+  },
+  {
+    "id": "Q14",
+    "question": "Đơn hàng 1971 đang giao thì nên trả hàng hay từ chối nhận?",
+    "expected_route": ["data", "policy"],
+    "expected_status": "ok"
+  },
+  {
+    "id": "Q15",
+    "question": "Voucher của tôi còn dùng được không?",
+    "expected_route": [],
+    "expected_status": "clarification_needed"
+  },
+  {
+    "id": "Q16",
+    "question": "Đơn hàng của tôi có được hoàn trả không?",
+    "expected_route": [],
+    "expected_status": "clarification_needed"
+  },
+  {
+    "id": "Q17",
+    "question": "Kiểm tra đơn hàng 9999 giúp tôi",
+    "expected_route": ["data"],
+    "expected_status": "not_found"
+  },
+  {
+    "id": "Q18",
+    "question": "Cho tôi xem voucher của khách hàng C999",
+    "expected_route": ["data"],
+    "expected_status": "not_found"
+  },
+  {
+    "id": "Q19",
+    "question": "Customer C014 có những đơn nào gần đây?",
+    "expected_route": ["data"],
+    "expected_status": "ok"
+  },
+  {
+    "id": "Q20",
+    "question": "Phương thức giao nhanh có thể bị chuyển sang giao tiêu chuẩn khi nào?",
+    "expected_route": ["policy"],
+    "expected_status": "ok"
+  },
+  {
+    "id": "Q21",
+    "question": "Khách hàng C001 tối đa dùng bao nhiêu voucher mỗi tháng?",
+    "expected_route": ["data"],
+    "expected_status": "ok"
+  },
+  {
+    "id": "Q22",
+    "question": "Đơn hàng 2058 có liên quan gì đến cửa sổ trả hàng 15 ngày trong policy không?",
+    "expected_route": ["data", "policy"],
+    "expected_status": "ok"
+  }
+]
