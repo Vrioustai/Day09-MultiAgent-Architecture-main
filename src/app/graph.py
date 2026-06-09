@@ -355,6 +355,18 @@ def worker_2_data_node(
     return {**state, "data_result": data_result, "trace": [trace_entry]}
 
 
+def _trim_for_prompt(result: dict) -> dict:
+    """Chỉ giữ fields cần thiết, bỏ raw_results để LLM không in JSON thô."""
+    return {
+        "status": result.get("status"),
+        "summary": result.get("summary", ""),
+        "facts": result.get("facts", [])[:6],
+        "citations": result.get("citations", [])[:4],
+        "missing_fields": result.get("missing_fields", []),
+        "not_found_entities": result.get("not_found_entities", []),
+    }
+
+
 def worker_3_response_node(state: ShoppingState, llm: Any) -> ShoppingState:
     question = state.get("question", "")
     route = state.get("route", {})
@@ -371,9 +383,12 @@ def worker_3_response_node(state: ShoppingState, llm: Any) -> ShoppingState:
         try:
             prompt = RESPONSE_WORKER_PROMPT.format(
                 question=question,
-                route=json.dumps(route, ensure_ascii=False),
-                policy_result=json.dumps(policy_result, ensure_ascii=False),
-                data_result=json.dumps(data_result, ensure_ascii=False),
+                route=json.dumps(
+                    {"status": route.get("status"), "needs_policy": route.get("needs_policy"), "needs_data": route.get("needs_data")},
+                    ensure_ascii=False,
+                ),
+                policy_result=json.dumps(_trim_for_prompt(policy_result), ensure_ascii=False),
+                data_result=json.dumps(_trim_for_prompt(data_result), ensure_ascii=False),
             )
             response = llm.invoke([HumanMessage(content=prompt)])
             final_answer = str(response.content).strip()

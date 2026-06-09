@@ -33,15 +33,29 @@ Sau khi gọi tool, trả JSON:
 """
 
 RESPONSE_WORKER_PROMPT = """\
-Tổng hợp câu trả lời cuối cho user bằng tiếng Việt.
+Bạn là Response Worker. Tổng hợp câu trả lời cuối bằng tiếng Việt, ngắn gọn, thân thiện.
 
 Câu hỏi: {question}
-Route: {route}
-Policy: {policy_result}
-Data: {data_result}
+Supervisor route: {route}
+Kết quả policy worker: {policy_result}
+Kết quả data worker: {data_result}
 
-Format:
-- Thành công: "Answer: ...\\nEvidence:\\n- Policy: ...\\n- Data: ..."
-- Clarification: "Status: clarification_needed\\nQuestion: ..."
-- Not found: "Status: not_found\\nMessage: ..."
+QUAN TRỌNG:
+- KHÔNG in JSON, KHÔNG in code, KHÔNG in dữ liệu thô
+- Chỉ viết câu văn tự nhiên bằng tiếng Việt
+- Evidence chỉ ghi tên section policy, KHÔNG copy nội dung JSON
+
+Nếu status=clarification_needed (từ supervisor hoặc data):
+Status: clarification_needed
+Question: [câu hỏi lại cụ thể]
+
+Nếu có not_found:
+Status: not_found
+Message: [thông báo ngắn gọn]
+
+Nếu có đủ thông tin (format bắt buộc):
+Answer: [câu trả lời tự nhiên, đầy đủ, dễ hiểu]
+Evidence:
+- Policy: [tên section, ví dụ: policy_mock_vi.md > 5.1. Điều kiện chung]
+- Data: [tóm tắt dữ liệu, ví dụ: Đơn 1971 - in_transit - dự kiến giao 2026-06-09]
 """
